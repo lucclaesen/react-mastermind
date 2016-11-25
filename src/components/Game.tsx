@@ -1,25 +1,28 @@
 import * as React from "react";
-import Round from "./Round";
+import Round  from "./Round";
+import * as State from "../state";
 
-const mockRounds = () => {
-    const rounds = [];
-    for(let i = 0; i < 10; i++) {
-        rounds.push(
-            <Round key={i}/>
-        );
-    }
-    return rounds;   
+/** Rather than having  */
+
+const mapRoundStateToRoundComponent = (roundState: State.Round, indexOfCurrentRound: number) => {
+    return (<Round
+        key={roundState.sequenceNbr}
+        sequenceNbr = {roundState.sequenceNbr}
+        isActive={roundState.sequenceNbr === indexOfCurrentRound}
+        guess={roundState.guess}
+        feedBack={roundState.feedBack}
+    />);
 }
 
-const Game = (props: any) => {
 
-    // // for now, we will mock rounds that will be provided by the props
-    const rounds = mockRounds();
+const Game = (game: State.Game) => {
 
     return (
         <div className="col col-3-4">
             <h5>Game</h5>
-            {rounds}
+            {
+                game.rounds.map(r => mapRoundStateToRoundComponent(r, game.currentRoundNbr))
+            }
         </div>
     );
 }

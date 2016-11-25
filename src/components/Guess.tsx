@@ -16,4 +16,4 @@ const Guess = (props: any) => {
     );
 }
 
-export default Guess;
+export {Guess};

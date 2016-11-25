@@ -4,13 +4,13 @@ import {connect} from "react-redux";
 import * as State from "../state";
 import Game from "./Game";
 
-const mapStateToProps = (model: State.Model, ownProps: any) => {
+const mapStateToProps = (model: State.Model, ownProps: any) : State.Game => {
     return {
-        game: model.game
+        currentRoundNbr: model.game.currentRoundNbr,
+        rounds: model.game.rounds
     };
 }
 
-console.log("Game is " + Game);
 const GameContainer = connect(mapStateToProps)(Game);
 
 export default GameContainer;

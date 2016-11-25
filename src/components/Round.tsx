@@ -1,11 +1,23 @@
 import * as React from "react";
-import Guess from "./Guess";
+import * as State from "../state";
+import {Guess} from "./Guess";
 import FeedBack from "./FeedBack";
 
-const Round = (props: any) => {
+
+const mapGuessStateToComponent = (guessState: State.Guess, roundNbr: number) => {
     return (
-        <div className="grid">
-            <Guess />
+        <Guess
+            roundNbr={roundNbr}
+            colorPlacements={guessState.colorPlacements}
+        />
+    );
+}
+
+
+const Round = (props: State.Round &  {isActive: boolean}) => {
+    return (
+        <div className="grid" style={{border : "solid 1px black", marginBottom:"2px"}}>
+            {mapGuessStateToComponent(props.guess, props.sequenceNbr)}
             <FeedBack />
         </div>
     );
