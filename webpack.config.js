@@ -52,6 +52,7 @@ module.exports = {
     },
     plugins: [
         new CircularDependencyPlugin({
+            // some node modules themselves have circular dependencies: ignore them
             exclude: /a\.js|node_modules/,
             failOnError: true
         })

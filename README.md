@@ -15,5 +15,15 @@ for a good description of the problem.
 
 There are a few lessons to be learned by this:
 - Surprisingly, webpack by default does not check at compile time for circular dependencies. However,
-there is a plugin that does precisely this and imho should be part of every webpack setup. 
-- y projects structure was completely wrong
+there is a plugin that does precisely this and imho should be part of every webpack setup, especially
+when you realize the unspecific type errors that result from circular dependencies.
+- My project structure was completely wrong -- as it was driven by "code roles" and drew wrong
+module boundaries. Placing containers and presentational components in two modules was especially
+desastruous, since some presentational components own containers and containers wrap presentational
+components, thus causing the vicious circle ...
+
+Merging containers and presentational components into a single module that exposes only the top
+level component "App" does the trick.
+
+However, in my next project, I need to consider a completely different setup, guided by the excellent
+http://jaysoo.ca/2016/02/28/organizing-redux-application/ and https://github.com/erikras/ducks-modular-redux.
