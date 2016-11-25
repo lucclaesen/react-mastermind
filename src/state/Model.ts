@@ -1,3 +1,7 @@
+/**
+ * Colors
+ */
+
 export enum Color {
     Red,
     Green,
@@ -6,13 +10,59 @@ export enum Color {
     Purple
 }
 
+export const colorNames = [
+    "red",
+    "green",
+    "yellow",
+    "blue",
+    "purple"
+]
+
 export interface ColorSelection {
     color: Color;
 }
 
+/**
+ * Rounds
+ */
+
+export interface ColorPlacement {
+    position: number;
+    color: Color;
+}
+
+export interface Guess {
+    colorPlacements: ColorPlacement[];
+}
+
+export interface FeedBack {
+    nbrColorAndPositionOk: number;
+    nrbColorOkInWrongPosition: number;
+    nbrWrong: number
+}
+
+export interface Round {
+    sequenceNbr: number;
+    guess: Guess;
+    feedBack?: FeedBack;
+}
+
+export interface Game {
+    currentRoundNbr: number;
+    rounds: Round[];
+}
+
+/**
+ * Final Model
+ */
+
 export interface Model {
     selectedColor: ColorSelection;
+    secret: Color[];
+    game: Game;
 }
+
+
 
 
 

@@ -1,11 +1,14 @@
 import * as React from "react";
-import {RulesSection, ColorPicker} from ".";
+import {RulesSection, ColorPicker, Game} from ".";
+import GameContainer from "../containers/GameContainer";
 
 const App = () => (
     <div>
-        <h1>MasterMind with react</h1>
+        <div className="grid">
+            <GameContainer />
+            <ColorPicker/>
+        </div>
         <RulesSection />
-        <ColorPicker />
     </div>
 );
 

@@ -1,0 +1,210 @@
+/*
+  ========================================
+  Reset: http://meyerweb.com/eric/tools/css/reset/ 2. v2.0 | 20110126
+  License: none (public domain)
+  ========================================
+*/
+
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+
+/*
+  ========================================
+  Grid
+  ========================================
+*/
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.container,
+.grid {
+  margin: 0 auto;
+}
+
+.container {
+  padding-left: 30px;
+  padding-right: 30px;
+  width: 960px;
+}
+
+
+.grid, .col {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.col {
+    display: inline-block;
+    vertical-align: top
+}
+
+/*
+    4 col grid layout
+*/
+
+.col-1-4 {
+    width: 25%
+}
+
+.col-2-4 {
+    width: 50%
+}
+
+.col-3-4 {
+    width: 75%
+}
+
+.col-4-4 {
+    width: 100%
+}
+
+/*
+  ========================================
+  Typography
+  ========================================
+*/
+
+h1, h2, h3, h4, h5, p {
+  margin-bottom: 22px;
+  color: #648880;
+}
+
+h1 {
+  font-size: 36px;
+  line-height: 44px;
+}
+h2 {
+  font-size: 24px;
+  line-height: 44px;
+}
+h3 {
+  font-size: 21px;
+}
+h4 {
+  font-size: 18px;
+}
+
+h5 {
+  color: #a9b2b9;
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+
+strong {
+  font-weight: 400;
+}
+cite, em {
+  font-style: italic;
+}
+
+
+
+/*
+  ========================================
+  Custom styles
+  ========================================
+*/
+body {
+  color: #888;
+  font: 300 16px/22px "Lato", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+p {
+  text-align: center;
+}
+
+.peg {
+    display: block;
+    width: 50px;
+    height:50px;
+    border-radius: 50%;
+    background: yellow;
+    padding: 10px;
+    margin: 5px auto;
+}
+
+.peg-selected {
+    border: 4px solid slategrey;
+}
+
+.peg-color-yellow {
+    background: yellow;
+}
+
+.peg-color-red {
+    background: darkred;
+}
+
+.peg-color-green {
+    background: green;
+}
+
+.peg-color-blue {
+    background:blue;
+}
+
+.peg-color-purple {
+    background: purple;
+}
+
+.pin {
+    display: inline-block;
+    width: 50px;
+    height:50px;
+    border-radius: 50%;
+    background: lightgray;
+    padding: 10px;
+    margin: 5px auto;
+}
+

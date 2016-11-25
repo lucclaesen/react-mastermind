@@ -1,3 +1,4 @@
 import {SelectColor} from "./SelectColor";
+import {ColorPlaced, ColorPlacedPayLoad} from "./ColorPlaced";
 
-export {SelectColor};
+export {SelectColor, ColorPlaced, ColorPlacedPayLoad};

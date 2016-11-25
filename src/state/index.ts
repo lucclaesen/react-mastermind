@@ -1,4 +1,32 @@
-import {Color, ColorSelection, Model} from "./Model";
-import {Action, ActionType, ActionBase} from "./Actions";
+import {
+    Color, 
+    ColorSelection, 
+    Model, 
+    colorNames,
+    Game,
+    Round,
+    FeedBack,
+    Guess,
+    ColorPlacement
+} from "./Model";
 
-export {Color, Model, ColorSelection, Action, ActionType, ActionBase};
+import {
+        Action, 
+        ActionType, 
+        ActionBase
+    } from "./Actions";
+
+export {
+        Color, 
+        colorNames, 
+        Model, 
+        ColorSelection, 
+        Action, 
+        ActionType, 
+        ActionBase,
+        Game,
+        Round,
+        FeedBack,
+        Guess,
+        ColorPlacement
+};

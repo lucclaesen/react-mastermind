@@ -1,3 +1,7 @@
 import ColorOptionContainer from "./ColorOptionContainer";
+import GameContainer from "./GameContainer";
 
-export {ColorOptionContainer};
+export {
+    ColorOptionContainer, 
+    // GameContainer
+};
