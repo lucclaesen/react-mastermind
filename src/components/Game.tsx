@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Round} from "./";
+import Round from "./Round";
 
 const mockRounds = () => {
     const rounds = [];

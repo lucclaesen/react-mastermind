@@ -1,5 +1,5 @@
 import * as React from "react";
-import {ColorOptionContainer} from "../containers";
+import ColorOptionContainer from "./ColorOptionContainer";
 import {Color} from "../state";
 
 const ColorPicker = () => {

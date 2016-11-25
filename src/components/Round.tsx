@@ -1,5 +1,6 @@
 import * as React from "react";
-import {Guess, FeedBack} from "./";
+import Guess from "./Guess";
+import FeedBack from "./FeedBack";
 
 const Round = (props: any) => {
     return (

@@ -1,4 +1,5 @@
 var path = require('path');
+var CircularDependencyPlugin = require('circular-dependency-plugin');
 
 module.exports = {
     entry : {
@@ -48,5 +49,11 @@ module.exports = {
     externals: {
         "react": "React",
         "react-dom": "ReactDOM",
-    }
+    },
+    plugins: [
+        new CircularDependencyPlugin({
+            exclude: /a\.js|node_modules/,
+            failOnError: true
+        })
+    ]
 }

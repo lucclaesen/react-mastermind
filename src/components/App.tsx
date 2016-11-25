@@ -1,6 +1,7 @@
 import * as React from "react";
-import {RulesSection, ColorPicker, Game} from ".";
-import GameContainer from "../containers/GameContainer";
+import RulesSection from "./RulesSection";
+import ColorPicker from "./ColorPicker";
+import GameContainer from "./GameContainer";
 
 const App = () => (
     <div>

@@ -2,7 +2,7 @@ import * as React from "react";
 import * as Redux from "redux";
 import {connect} from "react-redux";
 import * as State from "../state";
-import Game from "../components/Game";
+import Game from "./Game";
 
 const mapStateToProps = (model: State.Model, ownProps: any) => {
     return {

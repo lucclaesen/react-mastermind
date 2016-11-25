@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 import {Color, Model} from "../state";
 import {SelectColor} from "../actions";
-import {ColorOption} from "../components";
+import ColorOption from "./ColorOption";
 
 const mapStateToProps = (state: Model, ownProps: {color: Color}) => {
     return {
