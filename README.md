@@ -28,6 +28,31 @@ level component "App" does the trick.
 However, in my next project, I need to consider a completely different setup, guided by the excellent
 http://jaysoo.ca/2016/02/28/organizing-redux-application/ and https://github.com/erikras/ducks-modular-redux.
 
-Another issue that came about: the mastermind state tree has two "slices", "atoms" or subdomains: selectedColor and the actual game. Initially, I simply
+Another issue that came about: the mastermind state tree has three "slices", "atoms" or subdomains: 
+    - selectedColor that maintains the state of the colorpicker
+    - secret representing the challenge to be solved
+    - the actual game. 
+    
+Initially, I simply wrote a reducer for each of them and combined them with the built in combineReducers. This was clearly a mistake, since some game-related actions, need the currently
+selected color or the secret:
+    - an action saying that a "the currently selected color" should be set on position 0 of round 0 needs to be handled by a gameReducer that obviously knowns what color is the
+        currently selected one.
+    - if a combination of color allocations is submitted, the game reducer needs access to the secret in order to attach feedback to a guess.
+
+Now, this clearly indicates a flaw in my initial setup:
+- either there is no way to slice up my model and it should really be treated as a single atoms
+- or it is the responsibility of an action to provide the data from the "other slice". In fact (concentrating on the first case), my first intention was indeed
+    - let a Guess subscribe to state changes in the color selection
+    - if a peg is clicked, the action that is being dispatched then includes the currently selected color
+    - in consequence, the game reducer needs no knowledge of the selectedColor atom.
+
+However, this seems strange -- why would a guess need to rerender itself when a new color is selected?
+
+I finally setteled on an approach suggested by Gaeron: keep the slicing and the seggregation into 3 "slice reducers", but allowing "read only access" from the game slice to the other ones.
+Thus the game reducer remains responsible for determining just the next game state, but has access to elements outside it. The combination of reducers is then 
+
+This can mean several things:
+- it could mean that what I though to be 3 different slices, are really one and require to be handled by a single reducer.
+- or they can be seen as different slices, but as slices that overlap and even may include 
 used combineReducers to create the top-level reducer. However, combineReducerd presupposes that the combined reducers range of completely disjoint domains.
 In the use case of our game, however, a 
