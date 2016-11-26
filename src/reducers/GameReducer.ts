@@ -1,4 +1,4 @@
-import {Game, Round, FeedBack, Guess, ColorPlacement, ActionBase, Action, ActionType} from '../state';
+import {Game, Round, FeedBack, Guess, ColorPlacement, ActionBase, Action, ActionType, ColorSelection, Color} from '../state';
 import {ColorPlaced, ColorPlacedPayLoad} from "../actions";
 
 const initialRounds = () : Round[] => {
@@ -23,7 +23,7 @@ const defaultGame = () : Game => {
     };
 }
 
-const GuessReducer = (guess: Guess, action: ActionBase) : Guess => {
+const GuessReducer = (guess: Guess, action: ActionBase, selectedColor: ColorSelection, secret: Color[]) : Guess => {
     switch (action.type) {
         /**
          * A color is placed in the context of a guess
@@ -32,7 +32,7 @@ const GuessReducer = (guess: Guess, action: ActionBase) : Guess => {
             const payLoad = (action as Action<ColorPlacedPayLoad>).payLoad;
             const otherPlacements = guess.colorPlacements.filter(p => p.position !== payLoad.position);
             return { 
-                colorPlacements:    [... otherPlacements, {    color: payLoad.color,
+                colorPlacements:    [... otherPlacements, {    color: selectedColor.color,
                                                             position: payLoad.position
                                                         }
                                     ]
@@ -42,7 +42,7 @@ const GuessReducer = (guess: Guess, action: ActionBase) : Guess => {
     }
 }
 
-const RoundReducer = (round: Round, action : ActionBase) : Round => {
+const RoundReducer = (round: Round, action : ActionBase, selectedColor: ColorSelection, secret: Color[]) : Round => {
     switch (action.type) {
         /**
          * A color is placed in the context of a guess
@@ -53,26 +53,26 @@ const RoundReducer = (round: Round, action : ActionBase) : Round => {
                 return round;
             return {
                 sequenceNbr: round.sequenceNbr,
-                guess: GuessReducer(round.guess, action)
+                guess: GuessReducer(round.guess, action, selectedColor, secret)
             };
         default:
             return round;
     }
 }
 
-const RoundsReducer = (rounds: Round[], action: ActionBase) : Round[] => {
+const RoundsReducer = (rounds: Round[], action: ActionBase, selectedColor: ColorSelection, secret: Color[]) : Round[] => {
     switch (action.type) {
         /**
          * A color is placed in the context of a guess
          */
         case ActionType.ColorPlaced:
-            return rounds.map(r => RoundReducer(r, action));
+            return rounds.map(r => RoundReducer(r, action, selectedColor, secret));
         default:
             return rounds;
     }
 }
 
-const GameReducer = (game: Game = defaultGame(), action: ActionBase) : Game => {
+const GameReducer = (game: Game = defaultGame(), action: ActionBase, selectedColor: ColorSelection, secret: Color[]) : Game => {
     switch(action.type) {
         /**
          * A color is placed in the context of a guess
@@ -82,7 +82,7 @@ const GameReducer = (game: Game = defaultGame(), action: ActionBase) : Game => {
             const currentRound = game.rounds[payLoad.roundId];
             return {
                 currentRoundNbr:  game.currentRoundNbr,
-                rounds: RoundsReducer(game.rounds, action)
+                rounds: RoundsReducer(game.rounds, action, selectedColor, secret)
             };
         default:
             return game;

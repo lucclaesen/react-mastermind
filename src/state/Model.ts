@@ -7,7 +7,8 @@ export enum Color {
     Green,
     Yellow,
     Blue, 
-    Purple
+    Purple,
+    None
 }
 
 export const colorNames = [
@@ -15,7 +16,8 @@ export const colorNames = [
     "green",
     "yellow",
     "blue",
-    "purple"
+    "purple",
+    "lightgray"
 ]
 
 export interface ColorSelection {

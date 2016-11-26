@@ -27,3 +27,7 @@ level component "App" does the trick.
 
 However, in my next project, I need to consider a completely different setup, guided by the excellent
 http://jaysoo.ca/2016/02/28/organizing-redux-application/ and https://github.com/erikras/ducks-modular-redux.
+
+Another issue that came about: the mastermind state tree has two "slices", "atoms" or subdomains: selectedColor and the actual game. Initially, I simply
+used combineReducers to create the top-level reducer. However, combineReducerd presupposes that the combined reducers range of completely disjoint domains.
+In the use case of our game, however, a 

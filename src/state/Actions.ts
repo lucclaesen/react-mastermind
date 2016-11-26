@@ -9,6 +9,7 @@ export interface Action<P> extends ActionBase {
 export enum ActionType {
     SelectColor,
     RestartGame,
-    ColorPlaced
+    ColorPlaced,
+    SubmitGuess
 }
 

@@ -1,13 +1,12 @@
 import * as React from "react";
-import Round  from "./Round";
+import {Round}  from "./Round";
 import * as State from "../state";
 
-/** Rather than having  */
 
 const mapRoundStateToRoundComponent = (roundState: State.Round, indexOfCurrentRound: number) => {
     return (<Round
         key={roundState.sequenceNbr}
-        sequenceNbr = {roundState.sequenceNbr}
+        roundId = {roundState.sequenceNbr}
         isActive={roundState.sequenceNbr === indexOfCurrentRound}
         guess={roundState.guess}
         feedBack={roundState.feedBack}
