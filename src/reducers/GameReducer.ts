@@ -172,9 +172,13 @@ const GameReducer = (game: Game = defaultGame(), action: ActionBase, selectedCol
          */
             case ActionType.SubmitGuess:
                 const roundId = (action as Action<number>).payLoad;
+                // Prohibit guessing outside of the current round
                 if (roundId !== game.currentRoundNbr)
                     return game;
+                // Prohibit guessing when the game has stopped
                 if (game.gameState !== GameState.Playing)
+                    return game;
+                if (game.rounds[game.currentRoundNbr].guess.colorPlacements.length < 4)
                     return game;
                 const currentRoundNbr = game.currentRoundNbr + 1;
                 const rounds = RoundsReducer(game.rounds, action, selectedColor, secret);
