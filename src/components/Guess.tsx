@@ -43,7 +43,7 @@ const WrappedGuess = (props: GuessOwnProps & GuessConnect) => {
                 <div className="col col-1-4">
                     <button
                         onClick={e => props.submitGuess(props.roundId)}
-                        disabled={!props.isActive}
+                        disabled={!props.isActive || props.colorPlacements.length < 4}
                     >
                         Submit
                     </button>

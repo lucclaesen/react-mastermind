@@ -15,7 +15,7 @@ const App = () => (
                 <ColorPicker/>
             </div>
         </div>
-        <div className="col col-1-4">
+        <div>
             <RulesSection />
         </div>
     </div>

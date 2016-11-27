@@ -178,6 +178,7 @@ const GameReducer = (game: Game = defaultGame(), action: ActionBase, selectedCol
                 // Prohibit guessing when the game has stopped
                 if (game.gameState !== GameState.Playing)
                     return game;
+                // prohibit guessing if not all colors are placed in the current round
                 if (game.rounds[game.currentRoundNbr].guess.colorPlacements.length < 4)
                     return game;
                 const currentRoundNbr = game.currentRoundNbr + 1;
