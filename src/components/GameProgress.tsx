@@ -6,7 +6,7 @@ import {RestartGame} from "../actions";
 
 const WrappedGameProgress = (props : { gameState : State.GameState}) => {
     return (
-        <div>
+        <div className="gameProgress">
             Status: {props.gameState}
         </div>
     );
@@ -15,7 +15,7 @@ const WrappedGameProgress = (props : { gameState : State.GameState}) => {
 
 const mapStateToProps = (state: State.Model) : { gameState : State.GameState} => {
     return {
-        gameState: state.gameState
+        gameState: state.game.gameState
     };
 }
 

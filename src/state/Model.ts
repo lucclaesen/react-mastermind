@@ -58,6 +58,7 @@ export interface Round {
 export interface Game {
     currentRoundNbr: number;
     rounds: Round[];
+    gameState: GameState;
 }
 
 /**
@@ -68,7 +69,6 @@ export interface Model {
     selectedColor: ColorSelection;
     secret: Color[];
     game: Game;
-    gameState: GameState
 }
 
 

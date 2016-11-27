@@ -7,7 +7,8 @@ import Game from "./Game";
 const mapStateToProps = (model: State.Model, ownProps: any) : State.Game => {
     return {
         currentRoundNbr: model.game.currentRoundNbr,
-        rounds: model.game.rounds
+        rounds: model.game.rounds,
+        gameState: model.game.gameState
     };
 }
 

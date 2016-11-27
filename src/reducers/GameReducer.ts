@@ -1,4 +1,4 @@
-import {Game, Round, FeedBack, Guess, ColorPlacement, ActionBase, Action, ActionType, ColorSelection, Color} from '../state';
+import {Game, GameState, Round, FeedBack, Guess, ColorPlacement, ActionBase, Action, ActionType, ColorSelection, Color} from '../state';
 import {ColorPlaced, ColorPlacedPayLoad} from "../actions";
 
 const initialRounds = () : Round[] => {
@@ -19,7 +19,8 @@ const initialRounds = () : Round[] => {
 const defaultGame = () : Game => {
     return {
         currentRoundNbr: 0,
-        rounds : initialRounds() 
+        rounds : initialRounds(),
+        gameState: GameState.Playing
     };
 }
 
@@ -139,6 +140,17 @@ const RoundsReducer = (rounds: Round[], action: ActionBase, selectedColor: Color
     }
 }
 
+const GameStateReducer = (gameState: GameState, action: ActionBase, rounds: Round[]) : GameState => {
+    switch(action.type) {
+        case ActionType.SubmitGuess:
+            const roundId = (action as Action<number>).payLoad;
+            if (rounds[roundId].feedBack.nbrColorAndPositionOk === 4)
+                return GameState.Success;
+            return roundId === 9 ? GameState.Failed : gameState;
+        default: return gameState;
+    }
+}
+
 const GameReducer = (game: Game = defaultGame(), action: ActionBase, selectedColor: ColorSelection, secret: Color[]) : Game => {
     switch(action.type) {
         /**
@@ -148,9 +160,12 @@ const GameReducer = (game: Game = defaultGame(), action: ActionBase, selectedCol
             const payLoad = (action as Action<ColorPlacedPayLoad>).payLoad;
             if (payLoad.roundId !== game.currentRoundNbr)
                 return game;
+            if (game.gameState !== GameState.Playing)
+                    return game;
             return {
                 currentRoundNbr:  game.currentRoundNbr,
-                rounds: RoundsReducer(game.rounds, action, selectedColor, secret)
+                rounds: RoundsReducer(game.rounds, action, selectedColor, secret),
+                gameState : game.gameState
             };
         /**
          * A guess is submitted
@@ -159,9 +174,16 @@ const GameReducer = (game: Game = defaultGame(), action: ActionBase, selectedCol
                 const roundId = (action as Action<number>).payLoad;
                 if (roundId !== game.currentRoundNbr)
                     return game;
+                if (game.gameState !== GameState.Playing)
+                    return game;
+                const currentRoundNbr = game.currentRoundNbr + 1;
+                const rounds = RoundsReducer(game.rounds, action, selectedColor, secret);
+                // note that gamestate depends on the presence of feedback in the current round, so this needs to be passed in into the gamestateReducer ...
+                const gameState = GameStateReducer(game.gameState, action, rounds);
                 return {
-                    currentRoundNbr: game.currentRoundNbr + 1,
-                    rounds: RoundsReducer(game.rounds, action, selectedColor, secret)
+                    currentRoundNbr: currentRoundNbr,
+                    rounds: rounds,
+                    gameState: gameState
                 }
         default:
             return game;
