@@ -23,7 +23,8 @@ const renderPins = (colorPlacements: State.ColorPlacement[], roundId: number, co
 
 interface GuessOwnProps {
     roundId: number;
-    colorPlacements: State.ColorPlacement[];
+    colorPlacements: State.ColorPlacement[],
+    isActive: boolean;
 }
 
 interface GuessConnect {
@@ -42,6 +43,7 @@ const WrappedGuess = (props: GuessOwnProps & GuessConnect) => {
                 <div className="col col-1-4">
                     <button
                         onClick={e => props.submitGuess(props.roundId)}
+                        disabled={!props.isActive}
                     >
                         Submit
                     </button>

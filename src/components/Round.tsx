@@ -4,9 +4,9 @@ import {Guess, GuessOwnProps} from "./Guess";
 import FeedBack from "./FeedBack";
 
 
-const mapGuessStateToComponent = (guessState: State.Guess, roundNbr: number) => {
+const mapGuessStateToComponent = (guessState: State.Guess, roundNbr: number, isActive:boolean) => {
     return (
-        <Guess roundId={roundNbr} colorPlacements={guessState.colorPlacements} />
+        <Guess roundId={roundNbr} colorPlacements={guessState.colorPlacements} isActive={isActive}/>
     );
 }
 
@@ -20,8 +20,8 @@ interface RoundProps {
 const Round = (props: RoundProps) => {
     return (
         <div className="grid" style={{border : "solid 1px black", marginBottom:"2px"}}>
-            {mapGuessStateToComponent(props.guess, props.roundId)}
-            <FeedBack feedBack={props.feedBack}/>
+            {mapGuessStateToComponent(props.guess, props.roundId, props.isActive)}
+            <FeedBack feedBack={props.feedBack} />
         </div>
     );
 }

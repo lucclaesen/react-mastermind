@@ -2,6 +2,12 @@
  * Colors
  */
 
+export enum GameState {
+    Playing,
+    Failed,
+    Success
+}
+
 export enum Color {
     Red,
     Green,
@@ -62,6 +68,7 @@ export interface Model {
     selectedColor: ColorSelection;
     secret: Color[];
     game: Game;
+    gameState: GameState
 }
 
 

@@ -1,7 +1,9 @@
 import {ActionBase, ActionType} from "../state";
 
-export default () : ActionBase => {
+const RestartGame = () : ActionBase => {
     return { 
         type: ActionType.RestartGame
     }
 }
+
+export {RestartGame};

@@ -4,7 +4,7 @@ import {Color} from "../state";
 
 const ColorPicker = () => {
     return (
-        <div className="col col-1-4">
+        <div>
             <h5>Select current color</h5>
             <ColorOptionContainer color={Color.Yellow} />
             <ColorOptionContainer color={Color.Blue} />

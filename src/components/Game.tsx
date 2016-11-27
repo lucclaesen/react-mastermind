@@ -17,7 +17,7 @@ const mapRoundStateToRoundComponent = (roundState: State.Round, indexOfCurrentRo
 const Game = (game: State.Game) => {
 
     return (
-        <div className="col col-3-4">
+        <div>
             <h5>Game</h5>
             {
                 game.rounds.map(r => mapRoundStateToRoundComponent(r, game.currentRoundNbr))

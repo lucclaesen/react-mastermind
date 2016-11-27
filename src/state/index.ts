@@ -1,4 +1,5 @@
 import {
+    GameState,
     Color, 
     ColorSelection, 
     Model, 
@@ -7,7 +8,7 @@ import {
     Round,
     FeedBack,
     Guess,
-    ColorPlacement
+    ColorPlacement,
 } from "./Model";
 
 import {
@@ -17,6 +18,7 @@ import {
     } from "./Actions";
 
 export {
+        GameState,
         Color, 
         colorNames, 
         Model, 
