@@ -21,7 +21,7 @@ const Round = (props: RoundProps) => {
     return (
         <div className="grid" style={{border : "solid 1px black", marginBottom:"2px"}}>
             {mapGuessStateToComponent(props.guess, props.roundId)}
-            <FeedBack />
+            <FeedBack feedBack={props.feedBack}/>
         </div>
     );
 }

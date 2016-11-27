@@ -39,7 +39,13 @@ const WrappedGuess = (props: GuessOwnProps & GuessConnect) => {
                 <div className="col col-3-4">
                     {renderPins(props.colorPlacements, props.roundId, props.placeSelectedColor)}
                 </div>
-                <div className="col col-1-4">Submit</div>
+                <div className="col col-1-4">
+                    <button
+                        onClick={e => props.submitGuess(props.roundId)}
+                    >
+                        Submit
+                    </button>
+                </div>
             </div>
         </div>
     );

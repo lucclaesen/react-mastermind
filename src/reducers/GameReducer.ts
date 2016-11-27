@@ -54,16 +54,20 @@ const createFeedBack = (colorPlacements: ColorPlacement[], secret: Color[]) : Fe
 
     annotatedSecret.forEach(s => {
         switch(s.tag) {
-            case 0: result.nbrWrong++;
-            case 1: result.nbrColorAndPositionOk++;
-            case 2: result.nrbColorOkInWrongPosition++
+            case 0: result.nbrWrong++; break;
+            case 1: result.nbrColorAndPositionOk++; break;
+            case 2: result.nrbColorOkInWrongPosition++; break;
         }
     });
 
     return result;
 }
 
-const FeedBackReducer = (feedBack: FeedBack, action: ActionBase, colorPlacements: ColorPlacement[], secret: Color[]) : FeedBack => {
+const FeedBackReducer = (feedBack: FeedBack = {
+        nbrColorAndPositionOk: 0,
+        nbrWrong: 0,
+        nrbColorOkInWrongPosition: 0
+    }, action: ActionBase, colorPlacements: ColorPlacement[], secret: Color[]) : FeedBack => {
     switch(action.type) {
         case ActionType.SubmitGuess:
             return createFeedBack(colorPlacements, secret);
@@ -109,7 +113,7 @@ const RoundReducer = (round: Round, action : ActionBase, selectedColor: ColorSel
             };
         case ActionType.SubmitGuess:
             const roundId = (action as Action<number>).payLoad;
-            if (round.sequenceNbr !== payLoad.roundId)
+            if (round.sequenceNbr !== roundId)
                 return round;
             return {
                 sequenceNbr: round.sequenceNbr,
