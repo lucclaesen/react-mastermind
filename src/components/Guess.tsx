@@ -21,6 +21,16 @@ const renderPins = (colorPlacements: State.ColorPlacement[], roundId: number, co
     });
 }
 
+const renderSubmitButton = (props: GuessOwnProps & GuessConnect) => {
+    if (props.isActive && props.colorPlacements.length === 4) {
+        return (
+            <button className="submit"
+                onClick={e => props.submitGuess(props.roundId)}
+            />
+        );
+    }
+}
+
 interface GuessOwnProps {
     roundId: number;
     colorPlacements: State.ColorPlacement[],
@@ -41,12 +51,7 @@ const WrappedGuess = (props: GuessOwnProps & GuessConnect) => {
                     {renderPins(props.colorPlacements, props.roundId, props.placeSelectedColor)}
                 </div>
                 <div className="col col-1-4">
-                    <button
-                        onClick={e => props.submitGuess(props.roundId)}
-                        disabled={!props.isActive || props.colorPlacements.length < 4}
-                    >
-                        Submit
-                    </button>
+                    {renderSubmitButton(props)}
                 </div>
             </div>
         </div>

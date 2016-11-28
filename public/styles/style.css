@@ -217,3 +217,63 @@ p {
   height: 150px;
   border: 1px solid black;
 }
+
+/* -- feedback elements (feds) -- */
+
+.fed-box {
+  width: 44px;
+}
+
+.fed {
+  display: inline-block;
+  position: relative;
+  border-radius: 50%;
+  border: 1px solid black;
+  width: 10px;
+  height: 10px;
+  margin-right: 10px;
+}
+
+.fed-exact {
+  background-color: black;
+}
+
+.fed-miss:before, .fed-miss:after {
+  position: absolute;
+	left: 4px;
+	top: 1px;
+	content: ' ';
+	height: 8px;
+	width: 2px;
+	background-color: #333;
+}
+
+.fed-miss:before {
+  transform: rotate(45deg);
+}
+
+.fed-miss:after {
+  transform: rotate(-45deg);
+}
+
+/* -- Submit button -- */
+
+.submit {
+  position: relative;
+  width: 20px;
+  height: 5px;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+}
+
+.submit:before {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 12px;
+  border-color: green;
+  border-style: solid;
+  border-width: 0 5px 5px 0;
+  transform: rotate(45deg);
+}
