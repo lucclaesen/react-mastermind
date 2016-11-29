@@ -6,6 +6,10 @@ export const HandleSelectColor = (state: ColorSelection = { color : Color.Yellow
             const selectColorAction = action as Action<Color>;
             const newModel = Object.assign({}, state, { color : selectColorAction.payLoad });
             return newModel;
+        case ActionType.RestartGame:
+            return {
+                color: Color.Yellow
+            }
         default: return state; 
     }
 }

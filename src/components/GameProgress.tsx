@@ -3,11 +3,46 @@ import {connect} from "react-redux";
 import * as State from "../state";
 import {RestartGame} from "../actions";
 
+const displayProgress = (gameState : State.GameState, restartGame: () => void) => {
+    switch(gameState) {
+        case State.GameState.Playing:
+            return <p> Come on, keep up the good work</p>;
+        case State.GameState.Failed:
+            return (
+                <div>
+                    <p>Too bad ...</p>
+                    <p>Would you like to play again?</p>
+                    <div>
+                        <button
+                            onClick={e => {restartGame()}}>
+                                Play again
+                        </button>
+                    </div>
+                </div>
+            );
+        case State.GameState.Success:
+            return (
+                <div>
+                    <p>Congratulations ...</p>
+                    <p>Would you like to play again?</p>
+                    <div>
+                        <button
+                            onClick={e => {restartGame()}}>
+                                Play again
+                        </button>
+                    </div>
+                </div>
+            );
+        
+    }
+}
 
-const WrappedGameProgress = (props : { gameState : State.GameState}) => {
+
+
+const WrappedGameProgress = (props : { gameState : State.GameState, restartGame: () => void}) => {
     return (
         <div className="gameProgress">
-            Status: {props.gameState}
+            {displayProgress(props.gameState, props.restartGame)}
         </div>
     );
 }

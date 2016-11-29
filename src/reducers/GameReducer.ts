@@ -190,6 +190,12 @@ const GameReducer = (game: Game = defaultGame(), action: ActionBase, selectedCol
                     rounds: rounds,
                     gameState: gameState
                 }
+            case ActionType.RestartGame:
+                return {
+                    currentRoundNbr: 0,
+                    rounds: initialRounds(),
+                    gameState: GameState.Playing
+                }
         default:
             return game;
 
