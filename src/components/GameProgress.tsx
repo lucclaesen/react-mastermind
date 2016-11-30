@@ -3,7 +3,23 @@ import {connect} from "react-redux";
 import * as State from "../state";
 import {RestartGame} from "../actions";
 
-const displayProgress = (gameState : State.GameState, restartGame: () => void) => {
+const revealSecret = (secret: State.Color[]) => {
+    return (
+        <div>
+        {
+            secret.map(c => {
+                return <label 
+                        className="pin-small" 
+                        style={{background: State.colorNames[c]}}
+                        />
+            })
+        }
+        </div>
+    );
+};
+
+
+const displayProgress = (gameState : State.GameState, secret: State.Color[], restartGame: () => void) => {
     switch(gameState) {
         case State.GameState.Playing:
             return (
@@ -13,10 +29,11 @@ const displayProgress = (gameState : State.GameState, restartGame: () => void) =
         case State.GameState.Failed:
             return (
                 <div>
-                    <p>Too bad ...</p>
+                    <p>Too bad ... This is the solution:</p>
+                    {revealSecret(secret)}
                     <p>Would you like to play again?</p>
                     <div>
-                        <button
+                        <button className="playAgainButton"
                             onClick={e => {restartGame()}}>
                                 Play again
                         </button>
@@ -29,7 +46,7 @@ const displayProgress = (gameState : State.GameState, restartGame: () => void) =
                     <p>Congratulations ...</p>
                     <p>Would you like to play again?</p>
                     <div>
-                        <button
+                        <button className="playAgainButton"
                             onClick={e => {restartGame()}}>
                                 Play again
                         </button>
@@ -42,18 +59,19 @@ const displayProgress = (gameState : State.GameState, restartGame: () => void) =
 
 
 
-const WrappedGameProgress = (props : { gameState : State.GameState, restartGame: () => void}) => {
+const WrappedGameProgress = (props : { gameState : State.GameState, secret: State.Color[], restartGame: () => void}) => {
     return (
         <div className="gameProgress">
-            {displayProgress(props.gameState, props.restartGame)}
+            {displayProgress(props.gameState, props.secret, props.restartGame)}
         </div>
     );
 }
 
 
-const mapStateToProps = (state: State.Model) : { gameState : State.GameState} => {
+const mapStateToProps = (state: State.Model) : { gameState : State.GameState, secret: State.Color[]} => {
     return {
-        gameState: state.game.gameState
+        gameState: state.game.gameState,
+        secret: state.secret
     };
 }
 
