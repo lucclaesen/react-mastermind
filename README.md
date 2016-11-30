@@ -49,10 +49,17 @@ Now, this clearly indicates a flaw in my initial setup:
 However, this seems strange -- why would a guess need to rerender itself when a new color is selected?
 
 I finally setteled on an approach suggested by Gaeron: keep the slicing and the seggregation into 3 "slice reducers", but allowing "read only access" from the game slice to the other ones.
-Thus the game reducer remains responsible for determining just the next game state, but has access to elements outside it. The combination of reducers is then 
+Thus the game reducer remains responsible for determining just the next game state, but has access to elements outside it. The combination of reducers is then up to me.
 
-This can mean several things:
-- it could mean that what I though to be 3 different slices, are really one and require to be handled by a single reducer.
-- or they can be seen as different slices, but as slices that overlap and even may include 
-used combineReducers to create the top-level reducer. However, combineReducerd presupposes that the combined reducers range of completely disjoint domains.
-In the use case of our game, however, a 
+The disadvantage to this approach is however that "order" between execution of the subreducers becomes relevant (whereas the combination of reducers by combineReducers does not presupposes
+a temporal ordering). I think this is a big disadvantage, that makes thinking about reducers more difficult.
+
+After having choosen this option, a third one came about, again suggested by Dan Abromov. One way to make "overlapping slices" compatible with combineReducers is to allow for
+redundancy. With some state represented repeatedly in different slices. In his todo's example, he maintains two "views" on todos in the state tree and assures us that redundancy is quite
+normal.
+
+A completely different remark issue is about application configuration. 
+- Most suggestions on the web advise to use the DefinePlugin for webpack. This plugin is responsible for emitting variable definitions into the output bundle. E.g. log levels,
+connection strings, API-keys can be emitted during compile time and thus can be imported by your application at runtime.
+- Ideally, however, I would prefer environment vars to be external to the application bundle, such that deploying a "golden build" to different environments would deploy the very
+same versionned bundle.

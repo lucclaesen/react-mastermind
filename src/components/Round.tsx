@@ -18,8 +18,11 @@ interface RoundProps {
 }
 
 const Round = (props: RoundProps) => {
+    let classNames = "grid round";
+    if (props.isActive)
+        classNames += " round-active";
     return (
-        <div className="grid" style={{border : "solid 1px black", marginBottom:"2px"}}>
+        <div className={classNames}>
             {mapGuessStateToComponent(props.guess, props.roundId, props.isActive)}
             <FeedBack feedBack={props.feedBack} />
         </div>

@@ -6,7 +6,10 @@ import {RestartGame} from "../actions";
 const displayProgress = (gameState : State.GameState, restartGame: () => void) => {
     switch(gameState) {
         case State.GameState.Playing:
-            return <p> Come on, keep up the good work</p>;
+            return (
+                <div> 
+                    <p> Come on, keep up the good work</p>;
+                </div>);
         case State.GameState.Failed:
             return (
                 <div>

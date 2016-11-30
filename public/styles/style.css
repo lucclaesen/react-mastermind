@@ -208,12 +208,13 @@ p {
     height:50px;
     border-radius: 50%;
     padding: 10px;
-    margin: 5px auto;
+    margin: 5px;
 }
 
 
 /* -- Game progress -- */
 .gameProgress {
+  margin-top: 20px;
   height: 150px;
   border: 1px solid black;
 }
@@ -222,15 +223,16 @@ p {
 
 .fed-box {
   width: 44px;
+  margin-top: 10px;
 }
 
 .fed {
   display: inline-block;
   position: relative;
   border-radius: 50%;
-  border: 1px solid black;
-  width: 10px;
-  height: 10px;
+  border: 2px solid black;
+  width: 12px;
+  height: 12px;
   margin-right: 10px;
 }
 
@@ -240,10 +242,10 @@ p {
 
 .fed-miss:before, .fed-miss:after {
   position: absolute;
-	left: 4px;
-	top: 1px;
+	left: 3px;
+	top: 0px;
 	content: ' ';
-	height: 8px;
+	height: 9px;
 	width: 2px;
 	background-color: #333;
 }
@@ -260,20 +262,45 @@ p {
 
 .submit {
   position: relative;
-  width: 20px;
-  height: 5px;
-  border: none;
-  background-color: white;
+  width: 50px;
+  height: 50px;
+  border: 0;
   cursor: pointer;
+  border-radius: 50%;
+  margin: 5px auto;
 }
 
 .submit:before {
   content: "";
   position: absolute;
-  width: 8px;
-  height: 12px;
+  top: 22px;
+  left: 15px;
+  width: 20px;
+  height: 25px;
   border-color: green;
   border-style: solid;
   border-width: 0 5px 5px 0;
   transform: rotate(45deg);
+  margin-top: -11px;
+}
+
+/* -- Round -- */
+
+.round {
+  margin-bottom: 2px;
+}
+
+.round-active {
+  background: #a7b7c7;
+}
+
+
+/* -- Rules -- */
+.rules {
+  margin-top: 20px;
+}
+
+/* -- Progress -- */
+.progress {
+  margin-top: 25px;
 }

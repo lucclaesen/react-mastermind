@@ -2,6 +2,7 @@
   "name": "beginning-redux",
   "dependencies": {},
   "globalDependencies": {
+    "node": "registry:dt/node#6.0.0+20161110151007",
     "react": "registry:dt/react#0.14.0+20161117000655",
     "react-dom": "registry:dt/react-dom#0.14.0+20160412154040",
     "react-redux": "registry:dt/react-redux#4.4.0+20160908183346",

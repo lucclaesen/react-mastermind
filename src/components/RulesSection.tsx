@@ -24,7 +24,7 @@ export default class RulesSection extends React.Component<any, RulesSectionState
     public render() {
         let displayValue = this.state.expanded ? "block" : "none";
         return (
-            <div>
+            <div className="rules">
                 <a
                     href="#"
                     onClick = {

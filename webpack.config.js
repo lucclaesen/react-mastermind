@@ -1,4 +1,5 @@
 var path = require('path');
+var webpack = require('webpack');
 var CircularDependencyPlugin = require('circular-dependency-plugin');
 
 module.exports = {
@@ -55,6 +56,9 @@ module.exports = {
             // some node modules themselves have circular dependencies: ignore them
             exclude: /a\.js|node_modules/,
             failOnError: true
-        })
+        },
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+        }))
     ]
 }

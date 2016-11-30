@@ -11,8 +11,8 @@ const App = () => (
                 <GameContainer />
             </div>
             <div className="col col-1-4">
-                <GameProgress />
                 <ColorPicker/>
+                <GameProgress />
             </div>
         </div>
         <div>
